@@ -13,7 +13,7 @@
 #define MAXMOVES 32
 #include <stdint.h>
 #include <string.h>
-const unsigned char wht[]={255,255,255},blk[]={0,0,0},gry[]={160,160,160},blu[]={32,32,160};
+const unsigned char wht[]={255,255,255},blk[]={0,0,0},gry[]={160,160,160},blu[]={180,180,128};
 typedef struct game{
 	uint64_t p,e;
 	uint8_t t;
