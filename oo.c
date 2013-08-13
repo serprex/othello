@@ -102,7 +102,8 @@ int inlist(uint8_t*m,int x,int y){
 int main(int argc,char**argv){
 	#ifndef GLX
 	SDL_Init(SDL_INIT_VIDEO);
-	SDL_Surface*dpy=SDL_SetVideoMode(256,256,0,SDL_OPENGL);
+	SDL_Window*dpy=SDL_CreateWindow(0,SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,256,256,SDL_WINDOW_OPENGL);
+	SDL_GL_CreateContext(dpy);
 	#else
 	Display*dpy=XOpenDisplay(0);
 	XVisualInfo*vi=glXChooseVisual(dpy,DefaultScreen(dpy),(int[]){GLX_DOUBLEBUFFER,GLX_RGBA,None});
@@ -121,7 +122,7 @@ int main(int argc,char**argv){
 		while(XPending(dpy)){
 			XNextEvent(dpy,&ev);
 		#else
-		SDL_GL_SwapBuffers();
+		SDL_GL_SwapWindow(dpy);
 		SDL_Event ev;
 		while(SDL_PollEvent(&ev)){
 			if(ev.type==SDL_QUIT)return 0;
